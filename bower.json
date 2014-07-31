@@ -1,16 +1,23 @@
 {
-	"name": "_blank-template",
-	"version": "0.1.2",
-	"ignore": [
-		"source",
-		"spec",
-		".bowerrc",
-		".gitignore",
-		".jshintignore",
-		".jshintrc",
-		"bower.json",
-		"gruntfile.js",
-		"package.json",
-		"README.md"
-	]
+  "name": "_blank-template",
+  "version": "0.0.1",
+  "authors": [
+    "vladimir sabantsev"
+  ],
+  "description": "'Blank template form ITLOFT Studio'",
+  "keywords": [
+    "blank",
+    "makeup",
+    "template"
+  ],
+  "license": "MIT",
+  "homepage": "http://itloft.ru",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
 }
