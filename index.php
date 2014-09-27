@@ -42,48 +42,35 @@
     </style>
 </head>
 <body>
-    <ul class="makeups_list">
-        <?
-	        // проверяем корневую на корневую папку
-	        $docRoot = explode('/', $_SERVER['DOCUMENT_ROOT']);
-	        $currentDocRoot = $docRoot[count($docRoot) - 1];
+	<ul class="makeups_list">
+		<?php
 
-	        $fileRoot = explode('/', $_SERVER['SCRIPT_FILENAME']);
-	        $currentFileRoot = $fileRoot[count($fileRoot) - 2];
+		$dirFiles = scandir('./_makeups/_pages');
+		$makeups = array();
 
-	        // смотрим в корень
-	        $dir = scandir('./html');
-	        $htmls = array();
-	        foreach($dir as $file) {
-	            if(strpos($file,'.html') && strpos($file,'.htm')) {
-	                $htmls[] = $file;
-	            }
-	        }
+		foreach($dirFiles as $file) {
+			if(strpos($file,'.php')) {
+				$makeups[] = $file;
+			}
+		}
 
-	        // вытягиваем тайтлы
-	        $titles = array();
-	        foreach($htmls as $i => $file) {
-	            $content = file_get_contents('./html/'.$file);
-	            preg_match('#<title>(.*)<\/title>#u', $content, $result);
-	            $titles[$i] = $result[1];
-	        }
-   		?>
-	    <? foreach ($htmls as $i => $file): ?>
-	        <li>
-	            <? if ($currentDocRoot == $currentFileRoot): ?>
-	                <a href="/html/<?= $file ?>" target="_blank">
-	                    <span class="makeups_list_counter"><?= $i + 1 ?>. </span>
-	                    <?= $titles[$i] ?>
-	                </a>
-	            <? else : ?>
-	                <a href="<?= $_SERVER['REQUEST_URI'] ?>html/<?= $file ?>" target="_blank">
-	                    <span class="makeups_list_counter"><?= $i + 1 ?>. </span>
-	                    <?= $titles[$i] ?>
-	                </a>
-	            <? endif; ?>
-	        </li>
-	    <? endforeach; ?>
-    </ul>
+		$titles = array();
+		foreach($makeups as $i => $file) {
+			$content = file_get_contents('./_makeups/_pages'.$file);
+			preg_match('#<title>(.*)<\/title>#u', $content, $result);
+			$titles[$i] = $result[1];
+		}
+		?>
+
+		<? foreach ($makeups as $i => $file): ?>
+			<li>
+				<a href="<?= $_SERVER['REQUEST_URI'] ?>_makeups/_pages/<?= $file ?>" target="_blank">
+					<span class="makeups_list_counter"><?= $i + 1 ?>. </span>
+					<?= $makeups[$i] ?>
+				</a>
+			</li>
+		<? endforeach; ?>
+	</ul>
 </body>
 </html>
 
