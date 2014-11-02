@@ -1,0 +1,10 @@
+{
+  "name": "testicola-project",
+  "version": "0.1.0",
+  "devDependencies": {
+    "gulp": "^3.8.9",
+    "gulp-concat-css": "^1.1.0",
+    "gulp-minify-css": "^0.3.11",
+    "gulp-notify": "^2.0.0"
+  }
+}
