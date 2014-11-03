@@ -45,28 +45,31 @@
 	<ul class="makeups_list">
 		<?php
 
-		$dirFiles = scandir('./_makeups/_pages');
+		$dirFiles = scandir('./html/');
+
 		$makeups = array();
 
 		foreach($dirFiles as $file) {
-			if(strpos($file,'.php')) {
+			if(strpos($file,'.html')) {
 				$makeups[] = $file;
 			}
 		}
 
 		$titles = array();
 		foreach($makeups as $i => $file) {
-			$content = file_get_contents('./_makeups/_pages'.$file);
+			$content = file_get_contents('./html/'.$file);
 			preg_match('#<title>(.*)<\/title>#u', $content, $result);
 			$titles[$i] = $result[1];
 		}
+
 		?>
 
 		<? foreach ($makeups as $i => $file): ?>
 			<li>
-				<a href="<?= $_SERVER['REQUEST_URI'] ?>_makeups/_pages/<?= $file ?>" target="_blank">
+				<a href="<?= $_SERVER['REQUEST_URI'] ?>html/<?= $file ?>" target="_blank">
 					<span class="makeups_list_counter"><?= $i + 1 ?>. </span>
-					<?= $makeups[$i] ?>
+<!--					--><?//= $makeups[$i] ?>
+					<?= $titles[$i] ?>
 				</a>
 			</li>
 		<? endforeach; ?>
