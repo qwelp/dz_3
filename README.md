@@ -1,4 +1,4 @@
-> Как установить проект
+> Инструкция, как установить проект
 
 1. git clone https://github.com/qwelp/dz_3.git
 2. cd dz_3
